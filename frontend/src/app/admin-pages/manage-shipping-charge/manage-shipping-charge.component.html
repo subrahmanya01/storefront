@@ -1,0 +1,120 @@
+<div class="container">
+    <h2>Shipping Charge Management</h2>
+
+    <div class="form-container">
+      <h4>{{ editingCharge ? 'Edit Shipping Charge' : 'Add New Shipping Charge' }}</h4>
+      <form [formGroup]="shippingChargeForm" (ngSubmit)="onSubmit()">
+        <div class="form-grid">
+          <div class="form-field">
+            <label for="country">Country</label>
+            <input id="country" type="text" formControlName="country">
+            <div *ngIf="shippingChargeForm.get('country')?.invalid && shippingChargeForm.get('country')?.touched" class="error-message">
+              Country is required.
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="region">Postal Code</label>
+            <input id="region" type="text" formControlName="region">
+          </div>
+          <div class="form-field">
+            <label for="productId">Product ID</label>
+            <input id="productId" type="text" formControlName="productId">
+          </div>
+          <div class="form-field">
+            <label for="minOrderAmount">Min Order Amount</label>
+            <input id="minOrderAmount" type="number" formControlName="minOrderAmount">
+            <div *ngIf="shippingChargeForm.get('minOrderAmount')?.invalid && shippingChargeForm.get('minOrderAmount')?.touched" class="error-message">
+              Min Order Amount is required and must be a number.
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="maxOrderAmount">Max Order Amount</label>
+            <input id="maxOrderAmount" type="number" formControlName="maxOrderAmount">
+          </div>
+          <div class="form-field">
+            <label for="shippingFeePerKm">Shipping Fee</label>
+            <input id="shippingFeePerKm" type="number" formControlName="shippingFeePerKm">
+            <div *ngIf="shippingChargeForm.get('shippingFeePerKm')?.invalid && shippingChargeForm.get('shippingFeePerKm')?.touched" class="error-message">
+              Shipping Fee Per Km is required and must be a number.
+            </div>
+          </div>
+          <div class="form-field checkbox-field">
+            <input id="isFree" type="checkbox" formControlName="isFree">
+            <label for="isFree">Is Free Shipping?</label>
+          </div>
+          <div class="form-field">
+            <label for="carrier">Carrier</label>
+            <input id="carrier" type="text" formControlName="carrier">
+          </div>
+          <div class="form-field">
+            <label for="effectiveFrom">Effective From</label>
+            <input id="effectiveFrom" type="date" formControlName="effectiveFrom">
+          </div>
+          <div class="form-field">
+            <label for="effectiveTo">Effective To</label>
+            <input id="effectiveTo" type="date" formControlName="effectiveTo">
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" [disabled]="shippingChargeForm.invalid" class="submit-button">
+            {{ editingCharge ? 'Update Shipping Charge' : 'Create Shipping Charge' }}
+          </button>
+          <button *ngIf="editingCharge" type="button" (click)="cancelEdit()" class="cancel-button">
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <div class="table-container">
+      <h3>Existing Shipping Charges</h3>
+      <div *ngIf="loading" class="loading-message">Loading...</div>
+      <div *ngIf="error" class="error-message">Error: {{ error }}</div>
+
+      <div *ngIf="shippingCharges.length === 0 && !loading && !error" class="no-data-message">
+        No shipping charges found.
+      </div>
+
+      <div *ngIf="shippingCharges.length > 0" class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Country</th>
+              <th>Postal Code</th>
+              <th>Product ID</th>
+              <th>Min Order Amount</th>
+              <th>Max Order Amount</th>
+              <th>Fee/Km</th>
+              <th>Free</th>
+              <th>Carrier</th>
+              <th>Effective From</th>
+              <th>Effective To</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let charge of shippingCharges">
+              <td>{{ charge.country }}</td>
+              <td>{{ charge.region }}</td>
+              <td>{{ charge.productId }}</td>
+              <td>{{ charge.minOrderAmount }}</td>
+              <td>{{ charge.maxOrderAmount }}</td>
+              <td>{{ charge.shippingFeePerKm }}</td>
+              <td>{{ charge.isFree ? 'Yes' : 'No' }}</td>
+              <td>{{ charge.carrier }}</td>
+              <td>{{ charge.effectiveFrom | date:'shortDate' }}</td>
+              <td>{{ charge.effectiveTo | date:'shortDate' }}</td>
+              <td class="action-buttons">
+                <button (click)="editCharge(charge)" class="edit-button">Edit</button>
+              </td>
+              <td class="action-buttons">
+                <button (click)="deleteCharge(charge.id)" class="delete-button">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>

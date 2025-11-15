@@ -1,0 +1,129 @@
+.billing-section {
+    padding: 20px;
+}
+
+.billing-section h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.order-summary {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 4px;
+    margin-top: 20px;
+}
+
+.order-summary .item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.order-summary .item img {
+    width: 50px;
+    margin-right: 10px;
+}
+
+.order-summary .item .details {
+    flex-grow: 1;
+}
+
+.order-summary .total {
+    margin-top: 15px;
+    border-top: 1px solid #dee2e6;
+    padding-top: 10px;
+}
+
+.payment-options {
+    margin-top: 20px;
+}
+
+.payment-options .form-check {
+    margin-bottom: 10px;
+}
+
+.coupon-section {
+    display: flex;
+    margin-top: 20px;
+}
+
+.form-row {
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.input-container label {
+    font-size: 16px;
+    margin-bottom: 5px;
+    color: var(--label);
+    font-weight: 500;
+}
+
+.input-container input, textarea {
+    padding: 12px;
+    outline: none;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background-color: var(--input-background);
+    font-size: 16px;
+    color: var(--label);
+    box-sizing: border-box;
+}
+
+.input-container input::placeholder {
+    color: #999;
+}
+
+.coupon-section input {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+.save-info {
+    margin-top: 20px;
+}
+
+.save-info .form-check-label {
+    font-size: 14px;
+}
+
+.bank-methods img
+{
+    width: 40px;
+}
+@media (max-width: 768px) {
+    .billing-section {
+        padding: 15px;
+    }
+}
+
+.text-danger {
+    font-size: 13px;
+    color: red;
+  }
+
+  .spinner-div
+  {
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .discount
+  {
+    text-decoration: line-through;
+  }

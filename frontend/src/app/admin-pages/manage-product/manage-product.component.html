@@ -1,0 +1,37 @@
+<div class="product-crud-container container">
+    <h4>Manage Products</h4>
+  
+    <div class="tabs">
+      <button
+        [class.active]="activeTab === 'product'"
+        (click)="setActiveTab('product')"
+      >
+        {{ editingProduct?.id ? 'Edit Product' : 'Add Product' }}
+      </button>
+      <button
+        [class.active]="activeTab === 'variants'"
+        [disabled]="!editingProduct?.id"
+        (click)="setActiveTab('variants')"
+      >
+        Manage Variants ({{ editingProduct?.variants?.length || 0 }})
+      </button>
+    </div>
+  
+    <div class="tab-content">
+      <div *ngIf="activeTab === 'product'">
+        <app-product-form
+          [product]="editingProduct"
+          (productSaved)="onProductSaved($event)"
+        ></app-product-form>
+      </div>
+  
+      <div *ngIf="activeTab === 'variants' && editingProduct?.id">
+        <app-product-variant-list
+          [productId]="editingProduct?.id"
+          [productVariants]="editingProduct?.variants ?? []"
+          [allowedAttributes]="editingProduct?.allowedAttributes ?? []"
+          (variantsUpdated)="onVariantsUpdated($event)">
+        </app-product-variant-list>
+      </div>
+    </div>
+  </div>

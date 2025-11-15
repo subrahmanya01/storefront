@@ -1,0 +1,15 @@
+<div class="container">
+    <app-bread-scrum></app-bread-scrum>
+
+    <div class="not-found d-flex flex-column justify-content-center align-items-center">
+        <div class="main-text mt-4">
+            <h2>404 Not Found</h2>
+        </div>
+        <div class="sub-text">
+            Your visited page not found. You may go home page.
+        </div>
+        <div class="back-to-home mt-4" style="width: 300px;">
+            <app-button [label]="'Back to home page'" [size]="'small'" (click)="navigateToHome()"></app-button>
+        </div>
+    </div>
+</div>

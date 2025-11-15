@@ -1,0 +1,38 @@
+<div class="variant-form">
+    <h3>{{ variant?.id ? 'Edit Variant' : 'Add New Variant' }}</h3>
+    <form [formGroup]="variantForm" (ngSubmit)="onSubmit()">
+      <h4>Attributes</h4>
+      <div formGroupName="attributes">
+        <div *ngFor="let attribute of allowedAttributes" class="form-group">
+          <label [for]="attribute">{{ attribute }}:</label>
+          <input [id]="attribute" type="text" [formControlName]="attribute" required>
+           <div *ngIf="variantForm.get('attributes')?.get(attribute)?.invalid && variantForm.get('attributes')?.get(attribute)?.touched" class="error">
+             {{ attribute }} is required.
+           </div>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="price">Price:</label>
+        <input id="price" type="number" formControlName="price" required min="0">
+        <div *ngIf="variantForm.get('price')?.invalid && variantForm.get('price')?.touched" class="error">
+           Price is required and must be a non-negative number.
+         </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="inventory">Inventory:</label>
+        <input id="inventory" type="number" formControlName="inventory" required min="0">
+         <div *ngIf="variantForm.get('inventory')?.invalid && variantForm.get('inventory')?.touched" class="error">
+            Inventory is required and must be a non-negative integer.
+          </div>
+      </div>
+  
+      <div class="form-actions">
+        <app-button buttonType="submit" size="small" label="Save Variant" [disabled]="!variantForm.valid"></app-button>
+        <div class="cancel-btn" style="margin-top: 10px;" >
+          <app-button buttonType="button" size="small" type="outlined" label="Cancel" (click)="onCancel()"></app-button>
+        </div>
+      </div>
+    </form>
+  </div>

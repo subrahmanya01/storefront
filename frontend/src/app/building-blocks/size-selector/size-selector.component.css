@@ -1,0 +1,10 @@
+.size-sel-btn {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 4px;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+    font-weight: 500;
+}

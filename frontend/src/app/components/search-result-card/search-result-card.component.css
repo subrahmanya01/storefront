@@ -1,0 +1,105 @@
+
+.search-result-item {
+    display: flex; 
+    align-items: center; 
+    border: 1px solid #eee; 
+    border-radius: 8px; 
+    background-color: #fff; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08); 
+    transition: box-shadow 0.3s ease; 
+    cursor: pointer; 
+    padding: 15px; 
+    text-decoration: none; 
+    color: inherit; 
+  }
+  
+  .search-result-item:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); 
+  }
+  
+  
+  .item-image {
+    flex-shrink: 0; 
+    margin-right: 15px; 
+    border-radius: 4px; 
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    background-color: var(--input-background); 
+    width: 120px;
+    height: 120px;
+    padding: 10px; 
+  }
+  
+  .item-image img {
+    max-width: 100px;
+    max-height: 100px; 
+    object-fit: contain; 
+  }
+  
+  
+  .item-content {
+    flex-grow: 1; 
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .item-content h4 {
+    margin-top: 0;
+    margin-bottom: 5px; 
+    font-size: 1.1em;
+    color: #333;
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+  }
+  
+  .item-content p {
+    margin: 0 0 8px 0; 
+    font-size: 0.9em;
+    color: #777;
+    
+    /* display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis; */
+  }
+  
+  .item-price {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: var(--button-2); 
+    
+  }
+  
+  
+  /* .item-meta {
+      font-size: 0.85em;
+      color: #666;
+      margin-bottom: 5px;
+  } */
+  
+  
+  .item-action {
+      flex-shrink: 0; 
+      margin-left: 15px; 
+      white-space: nowrap; 
+  }
+  
+  .view-details-link {
+      color: var(--button-2); 
+      text-decoration: none; 
+      padding: 8px 12px; 
+      border: 1px solid var(--button-2);
+      border-radius: 4px;
+      display: inline-block; 
+      font-size: 0.9em;
+      transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  
+  .view-details-link:hover {
+      background-color: var(--button-2);
+      color: white;
+  }

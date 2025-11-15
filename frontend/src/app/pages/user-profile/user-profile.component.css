@@ -1,0 +1,113 @@
+.sidebar {
+    width: 250px; 
+    background-color: var;
+    padding: 20px;
+    box-sizing: border-box;
+    border-right: 1px solid var(--line);
+    font-size: 14px;
+}
+
+.sidebar-header {
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar-menu li {
+    margin-bottom: 5px;
+}
+
+.sidebar-menu li a {
+    text-decoration: none;
+    color: var(--label);
+    display: block;
+    padding: 8px 12px;
+}
+
+.sidebar-menu li.active a {
+    color: var(--button-2); 
+    font-weight: 500;
+}
+
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #ddd;
+    }
+}
+
+.content
+{
+    flex: 1;
+    padding: 20px 30px;
+}
+.content-header
+{
+    font-size: 20px;
+    color: var(--button-2);
+}
+
+.profile-form
+{
+    width: 100%;
+    position: relative;
+}
+.form-row
+{
+   width: 100%;
+   display: flex; 
+   gap: 20px;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.input-container label {
+    font-size: 16px;
+    margin-bottom: 5px;
+    color: var(--label);
+    font-weight: 500;
+}
+
+.input-container input{
+    padding: 12px;
+    outline: none;
+    border: 1px solid var(--line); 
+    border-radius: 6px; 
+    background-color: var(--input-background); 
+    font-size: 16px;
+    color: var(--label); 
+    box-sizing: border-box; 
+}
+
+.input-container input[type="text"]::placeholder {
+    color: #999; 
+}
+
+.pass-change
+{
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+.form-actions
+{
+    display: flex;
+    flex-direction: row-reverse;
+}

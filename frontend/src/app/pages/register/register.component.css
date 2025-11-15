@@ -1,0 +1,34 @@
+
+.login-container
+{
+  min-height: 70vh;
+  margin: 40px 0px;
+}
+
+.login-image
+{
+  width: 70%;
+}
+
+.head-sec h4
+{
+  font-weight: 600;
+}
+.custom-margin
+{
+  margin-top: 10px !important;
+}
+.inp-sec
+{
+  min-width: 350px;
+}
+
+.already-have-account
+{
+  margin-top: 20px;
+}
+
+.link
+{
+  color: var(--label);
+}

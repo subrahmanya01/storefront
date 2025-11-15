@@ -1,0 +1,28 @@
+.product-carousel {
+    overflow-y: auto;
+    gap: 30px;
+    max-height: 500px; 
+    -ms-overflow-style: none; 
+    scrollbar-width: none; 
+    scroll-behavior: smooth; 
+  }
+  .left-section h3 {
+    font-size: 22px;
+    font-weight: 600;
+  }
+  .navigation-btn {
+    border: none;
+    background-color: var(--card-background); 
+    border-radius: 50%;
+    padding: 8px;
+    cursor: pointer;
+  }
+  .custom-margin {
+    margin-right: 10px;
+  }
+  .navigation-btn:hover {
+    background-color: var(--line); 
+  }
+  .product-card{
+    width: 100%;
+  }

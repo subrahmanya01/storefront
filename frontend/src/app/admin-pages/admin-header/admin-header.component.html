@@ -1,0 +1,29 @@
+<div class="main-header">
+    <div class="header container">
+        <div class="first d-flex justify-content-start align-items-center">
+            <span class="app-name">{{storeInfo.name}} <span class="admin-style">Admin</span></span>
+        </div>
+        <div class="second d-flex justify-content-center align-items-center">
+            <a routerLink="/admin" routerLinkActive="active-link" class="main-link" [routerLinkActiveOptions]="{ exact: true }" >Products</a>
+            <a routerLink="admin/manage" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: false }"  class="main-link">Manage</a>
+          </div>
+        <div class="third d-flex justify-content-end align-items-center">
+            <div class="profile icons ml-4">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="32" height="32" rx="16" fill="#DB4444" />
+                    <path
+                        d="M21 23V21.3333C21 20.4493 20.691 19.6014 20.1408 18.9763C19.5907 18.3512 18.8446 18 18.0667 18H12.9333C12.1554 18 11.4093 18.3512 10.8592 18.9763C10.309 19.6014 10 20.4493 10 21.3333V23"
+                        stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    <path
+                        d="M16 15C17.6569 15 19 13.6569 19 12C19 10.3431 17.6569 9 16 9C14.3431 9 13 10.3431 13 12C13 13.6569 14.3431 15 16 15Z"
+                        stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                <span class="admin-name">{{userName}}</span>
+                <ul class="menu-items">
+                    <li><a href="profile" class="link">Manage My Account</a></li>
+                    <li (click)="logout()">Logout</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

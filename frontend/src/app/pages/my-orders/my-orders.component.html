@@ -1,0 +1,78 @@
+<div class="order-page-container container">
+    <h3>My Orders</h3>
+
+     @if(orderInfo.length  == 0)
+     {
+      <div class="no-orders">
+        <h4>No current or Previous orders found</h4>
+      </div>
+     }
+     @else
+     {
+      <div class="current-orders-section">
+        <h4>Current Orders</h4>
+        <div *ngIf="currentOrders.length === 0" class="no-orders">
+          You have no current orders.
+        </div>
+        <div *ngFor="let order of currentOrders" class="order-card">
+          <div class="order-header">
+            <div class="order-info">
+              <span>Order ID: {{ order.id }}</span>
+              <span>Date: {{ order.date }}</span>
+            </div>
+            <span class="status-tag" [ngClass]="getStatusClass(order.statusCode)">{{ order.status }}</span>
+          </div>
+          <div class="order-items">
+            <div *ngFor="let item of order.items" class="order-item">
+              <img [src]="item.imageUrl" alt="{{ item.product }}" class="product-image">
+              <div class="item-details">
+                <span class="product-name">{{ item.product }}</span>
+                <span>Price: ${{ item.price }}</span>
+                <span>Quantity: {{ item.quantity }}</span>
+                <span>Subtotal: ${{ item.subtotal }}</span>
+              </div>
+            </div>
+          </div>
+          <div class="order-footer">
+            <span class="cancel-order-btn" (click)="cancelOrder(order.orderId)">Cancel Order</span>
+            <span>Total: ${{ order.total }}</span>
+          </div>
+        </div>
+      </div>
+    
+      <div class="previous-orders-section">
+        <h4>Previous Orders</h4>
+    
+    
+        <div *ngIf="filteredPreviousOrders.length === 0" class="no-orders">
+          No previous orders found with the selected filter.
+        </div>
+        <div *ngFor="let order of filteredPreviousOrders" class="order-card">
+          <div class="order-header">
+            <div class="order-info">
+              <span>Order ID: {{ order.id }}</span>
+              <span>Date: {{ order.date }}</span>
+            </div>
+            <span class="status-tag" [ngClass]="getStatusClass(order.statusCode)">{{ order.status }}</span>
+          </div>
+          <div class="order-items">
+            <div *ngFor="let item of order.items" class="order-item">
+               <img [src]="item.imageUrl" alt="{{ item.product }}" class="product-image">
+              <div class="item-details">
+                <span class="product-name">{{ item.product }}</span>
+                <span>Price: ${{ item.price }}</span>
+                <span>Quantity: {{ item.quantity }}</span>
+                <span>Subtotal: ${{ item.subtotal }}</span>
+              </div>
+            </div>
+          </div>
+           <div class="order-footer">    
+            <span>Total: ${{ order.total }}</span>
+          </div>
+        </div>
+      </div>
+     }
+    
+    
+  </div>
+  

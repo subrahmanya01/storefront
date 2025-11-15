@@ -1,0 +1,57 @@
+
+.filter-sidebar {
+    flex-shrink: 0; 
+    width: 250px; 
+    padding: 15px; 
+    border: 1px solid #eee; 
+    border-radius: 8px; 
+    background-color: #f9f9f9; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); 
+    height: fit-content; 
+    
+    
+    
+  }
+  
+  .filter-sidebar h3 {
+     margin-top: 0;
+     margin-bottom: 20px;
+     color: #333;
+     border-bottom: 1px solid #eee;
+     padding-bottom: 10px;
+  }
+  
+  .filter-section {
+     margin-bottom: 20px;
+  }
+  
+  .filter-section h4 {
+     margin-top: 0;
+     margin-bottom: 10px;
+     color: #555;
+     font-size: 1em;
+  }
+  
+  .filter-section select,
+  .filter-section input[type="number"] {
+     width: 100%; 
+     padding: 8px;
+     border: 1px solid #ccc;
+     border-radius: 4px;
+     font-size: 0.9em;
+     box-sizing: border-box; 
+     margin-bottom: 5px; 
+  }
+  
+  .filter-section .price-inputs {
+     display: flex;
+     align-items: center;
+     flex-direction: column;
+     gap: 5px; 
+  }
+  
+  .filter-section .price-inputs input[type="number"] {
+     flex-grow: 1; 
+     width: auto; 
+     margin-bottom: 0; 
+  }

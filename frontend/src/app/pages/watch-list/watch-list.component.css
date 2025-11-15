@@ -1,0 +1,16 @@
+.no-items
+{
+    min-height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--button-hover-2);
+}
+
+.spinner-div
+{
+    display: flex;
+    min-height: 70vh;
+    justify-content: center;
+    align-items: center;
+}

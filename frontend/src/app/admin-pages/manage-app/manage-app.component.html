@@ -1,0 +1,20 @@
+<div class="layout-container container">
+    <div class="left-panel">
+      <nav class="menu-nav">
+        <h3>Navigation</h3>
+        <ul>
+          <li><a routerLink="banner" routerLinkActive="active-link" [class.active-link]="isBannerLinkActive()">Banner</a></li>
+          <li><a routerLink="flash-sales" routerLinkActive="active-link">Flash Sales</a></li>
+          <li><a routerLink="orders" routerLinkActive="active-link">Orders</a></li>
+          <li><a routerLink="tax" routerLinkActive="active-link">Tax</a></li>
+          <li><a routerLink="shipping-charge" routerLinkActive="active-link">Shipping Charge</a></li>
+          <li><a routerLink="discounts" routerLinkActive="active-link">Discounts</a></li>
+        </ul>
+      </nav>
+    </div>
+  
+    <div class="right-panel">
+      <div class="content-area">
+        <router-outlet></router-outlet>
+    </div>
+  </div>

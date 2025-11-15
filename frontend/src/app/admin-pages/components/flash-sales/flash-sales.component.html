@@ -1,0 +1,101 @@
+
+@if(isLoading)
+{
+  <div class="spinner-div">
+    <app-spinner></app-spinner>
+  </div>
+}
+@else
+{
+  <div class="flash-sale-manager-container">
+    <h3 style="text-align: center;">Manage Flash Sales</h3>
+  
+    <div class="add-sale-form">
+      <h4>Add New Flash Sale Period</h4>
+  
+      <div class="form-group product-search">
+        <label for="productSearch">Select Product(s):</label>
+        <input
+          type="text"
+          id="productSearch"
+          placeholder="Search and add products..."
+          [(ngModel)]="productSearchTerm"
+          (input)="onProductSearch()"
+          (focus)="onProductSearch()"
+          (blur)="hideSuggestions()">
+        <ul *ngIf="showSuggestions && filteredProducts.length > 0" class="suggestions-list">
+          <li *ngFor="let product of filteredProducts; trackBy: trackById" (mousedown)="selectProductSuggestion(product)">
+            {{ product.name }}
+          </li>
+        </ul>
+         <div *ngIf="showSuggestions && filteredProducts.length === 0 && productSearchTerm.length > 0" class="no-suggestions">
+             No products found.
+         </div>
+      </div>
+  
+      <div *ngIf="selectedProductsForNewSale.length > 0" class="selected-products-tags">
+          <span *ngFor="let product of selectedProductsForNewSale;trackBy: trackById" class="product-tag">
+              {{ product.name }}
+              <button (click)="removeProductFromNewSale(product.id)" class="remove-tag-button">&times;</button>
+          </span>
+      </div>
+       <div *ngIf="selectedProductsForNewSale.length === 0 && !showSuggestions" class="selected-products-tags-placeholder">
+          No products selected for this sale period.
+      </div>
+  
+  
+      <div class="form-group">
+        <label for="startDate">Start Date & Time:</label>
+        <input
+          type="datetime-local"
+          id="startDate"
+          [(ngModel)]="newSaleStartDate"
+          [min]="currentDateTime">
+      </div>
+  
+      <div class="form-group">
+        <label for="endDate">End Date & Time:</label>
+        <input
+          type="datetime-local"
+          id="endDate"
+          [(ngModel)]="newSaleEndDate"
+          [min]="newSaleStartDate || currentDateTime">
+      </div>
+  
+      <button
+        class="add-button"
+        (click)="addFlashSale()"
+        [disabled]="selectedProductsForNewSale.length === 0 || !newSaleStartDate || !newSaleEndDate">
+        Add Flash Sale Period
+      </button>
+    </div>
+  
+    <hr>
+  
+    <div class="flash-sales-list">
+      <h4>Flash Sales Periods (Grouped)</h4>
+  
+      <div *ngIf="groupedFlashSales.length === 0" class="no-items-message">
+        No flash sale periods added yet.
+      </div>
+  
+      <div *ngFor="let group of groupedFlashSales; trackBy: trackByIndex" class="sale-group">
+        <div class="group-header">
+          <div class="group-dates">
+              <strong>From:</strong> {{ formatDateDisplay(group.startsAt) }} <br>
+              <strong>To:</strong> {{ formatDateDisplay(group.endsAt) }}
+          </div>
+        </div>
+  
+        <ul class="group-products-list">
+          <li *ngFor="let productItem of group.products; trackBy: trackByItemId" class="group-product-item">
+              <span>{{ productItem.name }}</span>
+              <button class="remove-button remove-item-button" (click)="removeFlashSaleItem(productItem.id)">Remove</button>
+          </li>
+        </ul>
+      </div>
+  
+    </div>
+  
+  </div>
+}

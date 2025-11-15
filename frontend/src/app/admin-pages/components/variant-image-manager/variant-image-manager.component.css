@@ -1,0 +1,160 @@
+.image-manager h3 {
+ margin-top: 0;
+ margin-bottom: 15px;
+ color: #333;
+ border-bottom: 1px solid #eee;
+ padding-bottom: 8px;
+}
+
+.image-manager h4 {
+ margin-top: 15px;
+ margin-bottom: 10px;
+ color: #555;
+}
+
+.image-manager .current-images {
+ margin-bottom: 20px;
+ padding-bottom: 15px;
+ border-bottom: 1px dashed #ccc; 
+}
+
+.image-manager .image-preview-list {
+ display: flex;
+ flex-wrap: wrap;
+ gap: 10px; 
+}
+
+.image-manager .image-item {
+ border: 1px solid #ccc;
+ padding: 5px;
+ border-radius: 4px;
+ text-align: center;
+ background-color: #fff;
+ position: relative; 
+}
+
+.image-manager .image-item .image-preview {
+ width: 80px;
+ height: 80px;
+ object-fit: cover; 
+ margin-bottom: 5px;
+ display: block; 
+}
+
+.image-manager .image-item button.remove-btn { 
+ position: absolute;
+ top: -8px; 
+ right: -8px; 
+ background-color: #dc3545;
+ color: white;
+ border: none;
+ border-radius: 50%; 
+ width: 24px; 
+ height: 24px; 
+ font-size: 0.8em; 
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ cursor: pointer;
+ box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+ line-height: 1; 
+}
+
+.image-manager .image-item button.remove-btn:hover {
+ background-color: #c82333;
+}
+
+
+.image-manager .add-image-section {
+ margin-bottom: 20px;
+ padding: 15px;
+ border: 1px dashed #ccc; 
+ border-radius: 4px;
+ background-color: #f0f0f0;
+ text-align: center; 
+
+ 
+ transition: border-color 0.3s ease, background-color 0.3s ease; 
+}
+
+.image-manager .add-image-section.drag-over {
+   border-color: var(--button-2); 
+   background-color: #e9f5ff; 
+}
+
+.image-manager .drop-zone-text {
+   margin-bottom: 10px;
+   color: #555;
+   font-size: 1.1em;
+}
+
+
+
+.image-manager .file-input-container {
+ display: flex;
+ justify-content: center; 
+ align-items: center;
+ gap: 10px;
+ margin-bottom: 10px;
+}
+
+.image-manager input[type="file"] {
+  
+  display: none;
+}
+
+.image-manager .upload-button {
+ padding: 10px 15px;
+ background-color: var(--button-2);
+ color: white;
+ border: none;
+ border-radius: 4px;
+ cursor: pointer;
+ font-size: 1em;
+ display: inline-block; 
+}
+
+.upload-button:disabled
+{
+  background-color: var(--label);
+}
+
+.image-manager .upload-button:hover {
+  background-color: var(--button-2);
+}
+
+.image-manager .upload-button:disabled {
+  background-color: var(--label);
+}
+.image-manager .selected-files-list {
+  margin-top: 10px;
+  font-size: 0.9em;
+  color: #555;
+  text-align: left; 
+  max-height: 80px; 
+  overflow-y: auto; 
+  padding-right: 10px; 
+}
+
+.image-manager .selected-files-list p {
+  margin: 3px 0;
+}
+
+.image-manager .form-actions {
+ margin-top: 20px;
+ text-align: right; 
+}
+
+.image-manager .form-actions button {
+ padding: 10px 20px;
+ cursor: pointer;
+ background-color: var(--button-2); 
+ color: white;
+ border: none;
+ border-radius: 4px;
+ font-size: 1em;
+}
+
+.image-manager .form-actions button:hover {
+ background-color: var(--button-2);
+}

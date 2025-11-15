@@ -1,0 +1,32 @@
+@if(isLoading)
+{
+    <div class="spinner-area">
+        <app-spinner></app-spinner>
+    </div>
+}
+@else
+{
+    <div class="my-reviews-container container">
+        <app-bread-scrum ></app-bread-scrum>
+      
+        <div *ngIf="loadingOrders || loadingProducts || loadingRatings">
+          <p>Loading your order history and ratings...</p>
+        </div>
+      
+        <div *ngIf="errorMessage" class="error-message">
+          <p>{{ errorMessage }}</p>
+        </div>
+      
+        <div *ngIf="orderedProducts.length > 0; else noProducts">
+          <div *ngFor="let product of orderedProducts; trackBy: trackProductById" class="ordered-product-item">
+            <h5>{{ product.name }}</h5>
+            <p style="font-size: 13px;">{{ product.description | slice:0:100 }}...</p>
+            <app-product-rating [product]="product"></app-product-rating>
+          </div>
+        </div>
+      
+        <ng-template #noProducts>
+          <p>You haven't ordered any products yet.</p>
+        </ng-template>
+      </div>
+}

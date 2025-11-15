@@ -1,0 +1,28 @@
+@if(isLoading)
+{
+    <div class="spinner-div">
+        <app-spinner></app-spinner>
+    </div>
+}
+@else
+{
+    @if(isAdminRoute)
+    {
+        <app-admin-header></app-admin-header>
+    }
+    @else
+    {
+        <app-header></app-header>
+    }
+    <router-outlet></router-outlet>
+    @if(isAdminRoute)
+    {
+        <app-admin-footer></app-admin-footer>
+    }
+    @else
+    {
+        <app-footer></app-footer>
+    }
+    <app-snackbar></app-snackbar>
+
+}

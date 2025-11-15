@@ -1,0 +1,102 @@
+.contact-info {
+    background-color: #fff;
+    padding: 20px;
+}
+
+.contact-form {
+    background-color: #fff;
+    padding: 20px;
+}
+
+.contact-info h2, .contact-form h2 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.contact-info p {
+    color: #666;
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+.contact-info hr {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 20px 0;
+}
+
+.icon {
+    color: var(--button-2);
+    font-size: 24px;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+.contact-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.contact-item p {
+    margin: 0;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    flex-basis: calc(33.33% - 20px); 
+    flex-grow: 1; 
+}
+
+.input-container label {
+    font-size: 16px;
+    margin-bottom: 5px;
+    color: var(--label);
+    font-weight: 500;
+}
+
+.input-container input, textarea {
+    padding: 12px;
+    outline: none;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background-color: var(--input-background);
+    font-size: 16px;
+    color: var(--label);
+    box-sizing: border-box;
+}
+
+.input-container input::placeholder {
+    color: #999;
+}
+
+.form-row {
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+
+@media (max-width: 768px) {
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .input-container {
+        width: 100%;
+        flex-basis: auto;
+    }
+}
+
+
+@media (max-width: 576px) {
+    .w-100 {
+        text-align: center;
+    }
+}

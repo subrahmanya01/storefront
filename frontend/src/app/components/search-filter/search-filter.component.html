@@ -1,0 +1,43 @@
+<div class="filter-sidebar">
+    <h5>Filter By</h5>
+  
+    <div class="filter-section">
+      <h6>Category</h6>
+      <select [(ngModel)]="currentFilters.category" (change)="onFilterChange()">
+        <option [value]="null">All Categories</option>
+        <option *ngFor="let category of availableCategories" [value]="category">{{ category }}</option>
+      </select>
+    </div>
+  
+    <div class="filter-section">
+      <h6>Brand</h6>
+       <select [(ngModel)]="currentFilters.brand" (change)="onFilterChange()">
+          <option [value]="null">All Brands</option>
+          <option *ngFor="let brand of availableBrands" [value]="brand">{{ brand }}</option>
+        </select>
+    </div>
+  
+    <div class="filter-section">
+      <h6>Price Range</h6>
+      <div class="price-inputs">
+        <div style="width: 100%;">
+        <input
+          style="width: 100%;"
+          type="number"
+          [(ngModel)]="currentFilters.priceStart"
+          placeholder="Min"
+          min="0"
+          (change)="onFilterChange()">
+        </div>
+        <div style="width: 100%;">
+            <input
+            type="number"
+            style="width: 100%;"
+            [(ngModel)]="currentFilters.priceEnd"
+            placeholder="Max"
+            min="0"
+            (change)="onFilterChange()">
+        </div>
+      </div>
+    </div>
+    </div>

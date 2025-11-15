@@ -1,0 +1,64 @@
+<div class="admin-order-page-container">
+    <h3 style="margin-bottom: 10px; text-align: center;">Admin Order Management</h3>
+  
+    <div class="filter-sort-options">
+      <div class="filter-group">
+        <label for="statusFilter">Status:</label>
+        <select id="statusFilter" [(ngModel)]="filterStatus" (change)="applyFiltersAndSort()">
+          <option *ngFor="let status of availableStatuses;let i = index" [value]="status === 'All' ? '' : status">{{ status }}</option>
+        </select>
+      </div>
+  
+      <div class="sort-group">
+        <span>Sort By:</span>
+        <button (click)="changeSort('date')" [class.active]="sortBy === 'date'">Date
+          <span class="arrow-span" *ngIf="sortBy === 'date'">{{ sortDirection === 'asc' ? '▲' : '▼' }}</span>
+        </button>
+        <button (click)="changeSort('total')" [class.active]="sortBy === 'total'">Total
+           <span class="arrow-span" *ngIf="sortBy === 'total'">{{ sortDirection === 'asc' ? '▲' : '▼' }}</span>
+        </button>
+         <button (click)="changeSort('status')" [class.active]="sortBy === 'status'">Status
+           <span class="arrow-span" *ngIf="sortBy === 'status'">{{ sortDirection === 'asc' ? '▲' : '▼' }}</span>
+        </button>
+        </div>
+    </div>
+  
+    <div class="orders-table-container">
+      <div *ngIf="displayedOrders.length === 0" class="no-orders">
+        No orders found matching the criteria.
+      </div>
+      <table *ngIf="displayedOrders.length > 0" class="orders-table">
+        <thead>
+          <tr>
+            <th>Order ID</th>
+            <th>Date</th>
+            <th>User</th>
+            <th>Status</th>
+            <th>Items</th>
+            <th>Total</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of displayedOrders">
+            <td>{{ order.orderNumber }}</td>
+            <td>{{ order.createdAt }}</td>
+            <td>{{ order.customerId }}</td>
+            <td>
+              <span class="status-tag" [ngClass]="getStatusClass(order.status)">{{ getStatusName(order.status) }}</span>
+            </td>
+            <td>{{ order.orderItems.length }} item(s)</td>
+            <td>${{ order.totalAmount.toFixed(2) }}</td>
+            <td class="actions-cell">
+              <button class="action-button view-button" (click)="viewOrderDetails(order.id)">View</button>
+  
+              <select class="status-update-select" [ngModel]="getStatusName(order.status)" (change)="updateOrderStatus(order, $event)">
+                 <option *ngFor="let status of availableStatuses.slice(1)" [value]="status">{{ status }}</option>
+              </select>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

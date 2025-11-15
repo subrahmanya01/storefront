@@ -1,0 +1,53 @@
+<div class="product-rating-container container">
+    <h6>Customer Review</h6>
+  
+    <div *ngIf="userRating; else noReview">
+      <div class="review-box">
+        <div class="rating">
+          <span *ngFor="let star of getStarArray(userRating.stars); let i = index" class="star filled">★</span>
+          <span *ngFor="let star of getStarArray(5 - userRating.stars); let i = index" class="star">☆</span>
+        </div>
+        <p class="comment" *ngIf="userRating.comment">{{ userRating.comment }}</p>
+        <p class="date">{{ userRating.timestamp | date:'mediumDate' }}</p>
+        <button class="delete-button" (click)="deleteRating()" [disabled]="isDeleting">
+          <span *ngIf="isDeleting">Deleting...</span>
+          <span *ngIf="!isDeleting">Delete Review</span>
+        </button>
+      </div>
+    </div>
+  
+    <ng-template #noReview>
+      <p style="font-size: 13px;">You haven't reviewed this product yet.</p>
+      <button class="add-button" (click)="toggleAddReviewForm()">Add Review</button>
+  
+      <div *ngIf="showAddReviewForm" class="add-review-form">
+        <h4>Add Your Review</h4>
+        <form [formGroup]="ratingForm" (ngSubmit)="submitRating()">
+          <div class="form-group">
+            <label for="stars">Rating:</label>
+            <div class="star-rating">
+              <span *ngFor="let star of getStarArray(5); let i = index"
+                    (click)="ratingForm.patchValue({ stars: i + 1 })"
+                    [class.filled]="i + 1 <= ratingForm.get('stars')?.value"
+                    class="star">
+                ★
+              </span>
+            </div>
+            <div *ngIf="ratingForm.get('stars')?.invalid && ratingForm.get('stars')?.touched" class="error-message">
+              Please select a rating.
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="comment">Comment (Optional):</label>
+            <textarea formControlName="comment"></textarea>
+          </div>
+          <button type="submit" class="submit-button" [disabled]="ratingForm.invalid || isSubmitting">
+            <span *ngIf="isSubmitting">Submitting...</span>
+            <span *ngIf="!isSubmitting">Submit Review</span>
+          </button>
+          <button type="button" class="cancel-button" (click)="toggleAddReviewForm()" [disabled]="isSubmitting">Cancel</button>
+        </form>
+        <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+      </div>
+    </ng-template>
+  </div>

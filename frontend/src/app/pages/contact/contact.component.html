@@ -1,0 +1,78 @@
+<div class="container mb-5">
+    <app-bread-scrum></app-bread-scrum>
+
+    <main>
+        <div class="row">
+            <div class="col-md-4 contact-info">
+                <div class="contact-item">
+                    <span class="icon">&#9742;</span>
+                    <div>
+                        <h2>Call To Us</h2>
+                        <p>We are available 24/7, 7 days a week.</p>
+                        <p>Phone: {{storeInfo.phoneNumber}}</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="contact-item">
+                    <span class="icon">&#9993;</span>
+                    <div>
+                        <h2>Write To Us</h2>
+                        <p>Fill out our form and we will contact you within 24 hours.</p>
+                        @for(item of storeInfo.companySupportEmails; track item)
+                        {
+                            <p>Emails: {{item}} </p>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+                    <div class="form-row">
+                        <div class="input-container">
+                            <label for="name">Your Name *</label>
+                            <input type="text" id="name" formControlName="name" name="name" readonly>
+                        </div>
+                        <div class="input-container">
+                            <label for="email">Your Email *</label>
+                            <input type="email" id="email" formControlName="email" name="email">
+                        </div>
+                        <div class="input-container">
+                            <label for="phone">Your Phone *</label>
+                            <input type="tel" id="phone" formControlName="phoneNumber" name="phone" >
+                            @if(contactForm.get('phoneNumber')?.touched && contactForm.get('phoneNumber')?.errors)
+                            {
+                                @if(contactForm.get('phoneNumber')?.errors?.['required'])
+                                {
+                                    <span class="error">Phone Number is required</span>
+                                }
+                                @else if(contactForm.get('phoneNumber')?.errors?.['pattern'])
+                                {
+                                    <span class="error">Not valid phone number</span>
+                                }
+                            }
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="input-container">
+                            <label for="message">Your Message</label>
+                            <textarea id="message" name="message" formControlName="message" style="min-height: 200px;"></textarea>
+                            @if(contactForm.get('message')?.touched && contactForm.get('message')?.errors?.['required'])
+                            {
+                                <span class="error">Description is required</span>
+                            }
+                            @else if(contactForm.get('message')?.touched && ( contactForm.get('message')?.errors?.['minLength']))
+                            {
+                                <span class="error">Description should be minimum 25 charecters</span>
+                            }
+                        </div>
+                    </div>
+                    <div class="w-100 d-flex justify-content-end">
+                        <app-button [label]="'Send Message'" [size]="'small'" buttonType="submit" 
+                         [disabled]="!contactForm.valid" style="min-width: 200px;"></app-button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+</div>

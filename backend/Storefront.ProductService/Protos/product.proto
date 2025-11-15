@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+option csharp_namespace = "Storefront.ProductService.Protos";
+
+service ProductRpc {
+  rpc GetProductById (GetProductRequest) returns (ProductResponse);
+
+  rpc GetProductsByIds (GetProductsByIdsRequest) returns (GetProductsByIdsResponse);
+}
+
+message GetProductRequest {
+  string id = 1;
+}
+
+message GetProductsByIdsRequest {
+  repeated string ids = 1;
+}
+
+message GetProductsByIdsResponse {
+  repeated ProductResponse products = 1;
+}
+
+message ProductResponse {
+  string id = 1;
+  string name = 2;
+  string type = 3;
+  string category = 4;
+  string description = 5;
+  repeated string allowedAttributes = 6;
+  map<string, string> baseAttributes = 7;
+  repeated ProductVariantMessage variants = 8;
+  map<string, AttributeValuesList> attributeValues = 9;
+}
+
+message ProductVariantMessage {
+  string id = 1;
+  map<string, string> attributes = 2;
+  double price = 3;
+  int32 inventory = 4;
+  repeated string images = 5;
+  bool isComplete = 6;
+}
+
+message AttributeValuesList {
+  repeated string values = 1;
+}

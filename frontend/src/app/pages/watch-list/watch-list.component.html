@@ -1,0 +1,26 @@
+@if(isLoading)
+{
+    <div class="spinner-div">
+        <app-spinner></app-spinner>
+    </div>
+}
+@else
+{
+    @if(products.length == 0)
+    {
+        <div class="no-items">
+            <h4>No items in watch list</h4>
+        </div>
+    }
+    @else
+    {
+        <div class="container mt-4 mb-4">
+            <div class="button-comp">
+                <app-button label="Clear" size="small" style="float: right; min-width: 140px;" (click)="clearWatchList()"></app-button>
+            </div>
+            <app-legend label="Watch List"></app-legend>
+            <app-product-carousel title="Your watch list" [items]="products" [isDeleteWatchList]="true"></app-product-carousel>
+        </div>
+    }
+
+}

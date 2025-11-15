@@ -1,0 +1,8 @@
+<div class="snackbar-container" [ngClass]="positionClass" *ngIf="isVisible">
+    <div class="snackbar-message" [ngClass]="messageTypeClass">
+      <span class="message-text">{{ message }}</span>
+  
+      <button class="close-button" (click)="hide()">
+        &times; </button>
+    </div>
+  </div>

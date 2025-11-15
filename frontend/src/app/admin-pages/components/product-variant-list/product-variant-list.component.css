@@ -1,0 +1,116 @@
+.variant-list {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    min-height: 50vh;
+  }
+  
+  .variant-list h3 {
+    color: #555;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 8px;
+  }
+  
+  .variant-list > button { 
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 15px;
+    font-size: 1em;
+  }
+  
+  .variant-list > button:hover {
+    background-color: #0056b3;
+  }
+  
+  .variant-list table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+  
+  .variant-list th,
+  .variant-list td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  .variant-list th {
+    background-color: #f2f2f2;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  .variant-list td button {
+    margin-right: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    font-size: 0.9em;
+  }
+  
+  .variant-list td button:hover {
+    background-color: #e9e9e9;
+  }
+  
+  .variant-list td button:last-child {
+    margin-right: 0;
+  }
+  
+  .variant-list td button:nth-child(2) { 
+     background-color: #dc3545;
+     color: white;
+     border-color: #dc3545;
+  }
+  .variant-list td button:nth-child(2):hover {
+     background-color: #c82333;
+     border-color: #c82333;
+  }
+  
+  .variant-form-modal,
+  .image-manager-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; 
+  }
+  
+  .modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 600px; 
+    width: 90%;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+    position: relative; 
+    max-height: 90%; 
+    overflow-y: auto; 
+  }
+  
+  
+  /*
+  .modal-content .close-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 1.2em;
+      cursor: pointer;
+      border: none;
+      background: none;
+  }
+  */

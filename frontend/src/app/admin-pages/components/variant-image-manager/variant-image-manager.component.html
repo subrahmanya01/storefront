@@ -1,0 +1,53 @@
+<div class="image-manager">
+  <h5>Manage Images for Variant ({{ getAttributeSummary(variant!) }})</h5>
+
+  <div class="current-images">
+    <h6>Existing Images:</h6>
+    <div *ngIf="variant?.images?.length === 0; else imageList">
+      <p>No images currently uploaded.</p>
+    </div>
+    <ng-template #imageList>
+      <div class="image-preview-list">
+        <div *ngFor="let imageUrl of variant?.images; let i = index" class="image-item">
+          <img [src]="imageUrl" alt="Variant Image {{i + 1}}" class="image-preview">
+          <button class="remove-btn" (click)="removeImage(imageUrl)" title="Remove Image">&times;</button>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+
+  <div
+    class="add-image-section"
+    (dragover)="onDragOver($event)"
+    (dragleave)="onDragLeave($event)"
+    (drop)="onDrop($event)"
+    [class.drag-over]="isDraggingOver" > <h4>Upload New Images:</h4>
+
+    <div class="drop-zone-text">
+        Drag and drop images here, or
+    </div>
+
+    <div class="file-input-container">
+      <input type="file" multiple accept="image/*" #fileInput (change)="onFileSelected($event)">
+      <button type="button" class="upload-button" (click)="fileInput.click()">
+        Select Images
+      </button>
+    </div>
+
+    <div *ngIf="selectedFiles.length > 0" class="selected-files-list">
+        <p>Selected files:</p>
+        <ul>
+           <li *ngFor="let file of selectedFiles">{{ file.name }}</li>
+        </ul>
+    </div>
+
+     <button type="button" class="upload-button" [disabled]="selectedFiles.length === 0 || isUploading" (click)="uploadImages()">
+        {{ isUploading ? 'Uploading...' : 'Upload Selected Images' }}
+     </button>
+
+  </div>
+
+  <div class="form-actions">
+    <button type="button" (click)="onDone()">Done</button>
+  </div>
+</div>

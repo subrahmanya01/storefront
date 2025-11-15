@@ -1,0 +1,31 @@
+<div class="cart-container">
+    <div class="cart-header">
+      <span class="product-header">Product</span>
+      <span class="price-header">Price</span>
+      <span class="quantity-header">Quantity</span>
+      <span class="subtotal-header">Subtotal</span>
+    </div>
+    <div class="cart-items">
+      <div class="cart-item" *ngFor="let item of cartItems">
+        <div class="item-details">
+          <img [src]="item.imageUrl" alt="{{ item.name }}" class="item-image">
+          <span class="item-name">{{ item.name }}</span>
+        </div>
+        <span class="item-price">${{ item.price }}</span>
+        <div class="item-quantity">
+          <button (click)="decreaseQuantity(item)" class="qnty-btn">-</button>
+          <span class="qntity">{{ item.quantity }}</span>
+          <button (click)="increaseQuantity(item)" class="qnty-btn">+</button>
+        </div>
+        <span class="item-subtotal">${{ item.price * item.quantity }}</span>
+        <span class="item-subtotal">
+          <svg (click)="onDeleteClick(item.cartId)" style="cursor: pointer;" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 6H5H21" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M8 6V4C8 3.44772 8.44772 3 9 3H15C15.5523 3 16 3.44772 16 4V6M19 6V20C19 20.5523 18.5523 21 18 21H6C5.44772 21 5 20.5523 5 20V6H19Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M10 11V17" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M14 11V17" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        </span>
+      </div>
+    </div>
+  </div>

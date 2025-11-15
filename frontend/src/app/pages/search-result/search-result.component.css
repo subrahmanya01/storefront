@@ -1,0 +1,51 @@
+
+.search-results-container {
+    padding: 20px; 
+    font-family: sans-serif; 
+    min-height: 38vh;
+  }
+  
+  .search-results-container h5 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+  }
+  
+  
+  .results-grid {
+    display: grid; 
+    
+    grid-template-columns: auto;
+    width: 100%;
+    gap: 10px;
+  }
+  
+  
+  .no-results {
+    text-align: center;
+    color: #777;
+    font-size: 1.1em;
+    min-height: 40vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .main
+  {
+    display: flex;
+    gap: 10px;
+  }
+  .right
+  {
+    width: 100%;
+  }
+
+  .spinner-div
+  {
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }

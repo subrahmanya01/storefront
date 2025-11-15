@@ -1,0 +1,41 @@
+.order-container {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px auto;
+    background-color: #f9f9f9;
+  }
+
+  .order-header {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .order-header p {
+    margin: 5px 0;
+  }
+
+  .shipping-address, .billing-address, .order-items {
+    margin-bottom: 20px;
+  }
+
+  .shipping-address h3, .billing-address h3, .order-items h3 {
+    color: #333;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+  }
+
+  .order-items ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .order-items li {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 4px;
+  }

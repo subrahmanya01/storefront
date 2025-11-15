@@ -1,0 +1,179 @@
+<div class="container">
+  @if(isLoading)
+  {
+    <div class="spinner-div">
+      <app-spinner></app-spinner>
+    </div>
+  }
+  @else
+  {
+    @if(mappedCartItems.length == 0)
+    {
+      <div style="height: 70vh; display: flex; justify-content: center;align-items: center;">
+        <h4>No Cart Items</h4>
+      </div>
+    }
+    @else
+    {
+      <app-bread-scrum></app-bread-scrum>
+
+      <main>
+          <div class="billing-section">
+              <h2>Billing Details</h2>
+              <div class="row">
+                  <div class="col-md-5">
+                  <form #checkoutFormRef="ngForm" [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+                      
+                        <div class="input-container">
+                          <label for="firstName">Full Name</label>
+                          <input type="text" id="firstName" formControlName="firstName" />
+                          <div *ngIf="checkoutForm.get('firstName')?.touched && checkoutForm.get('firstName')?.invalid" class="text-danger">
+                            Full Name is required
+                          </div>
+                        </div>
+                        <div class="input-container">
+                          <label for="companyName">Landmark</label>
+                          <input type="text" id="companyName" formControlName="companyName" />
+                        </div>
+                    
+                        <div class="input-container">
+                          <label for="streetAddress">Street Address</label>
+                          <input type="text" id="streetAddress" formControlName="streetAddress" />
+                          <div *ngIf="checkoutForm.get('streetAddress')?.touched && checkoutForm.get('streetAddress')?.invalid" class="text-danger">
+                            Street Address is required
+                          </div>
+                        </div>
+                    
+                        <div class="input-container">
+                          <label for="apartment">Apartment, floor, etc. (optional)</label>
+                          <input type="text" id="apartment" formControlName="apartment" />
+                        </div>
+                    
+                        <div class="input-container">
+                          <label for="townCity">Town/City</label>
+                          <input type="text" id="townCity" formControlName="townCity" />
+                          <div *ngIf="checkoutForm.get('townCity')?.touched && checkoutForm.get('townCity')?.invalid" class="text-danger">
+                            Town/City is required
+                          </div>
+                        </div>
+  
+                        <div class="input-container">
+                          <label for="townCity">Country</label>
+                          <input type="text" id="townCity" formControlName="country" />
+                          <div *ngIf="checkoutForm.get('country')?.touched && checkoutForm.get('country')?.invalid" class="text-danger">
+                            Country is required
+                          </div>
+                        </div>
+
+                        <div class="input-container">
+                          <label for="townCity">State</label>
+                          <input type="text" id="townCity" formControlName="state" />
+                          <div *ngIf="checkoutForm.get('state')?.touched && checkoutForm.get('state')?.invalid" class="text-danger">
+                            State is required
+                          </div>
+                        </div>
+  
+                        <div class="input-container">
+                          <label for="townCity">Postal Code</label>
+                          <input type="text" id="townCity" formControlName="postalCode" />
+                          <div *ngIf="checkoutForm.get('postalCode')?.touched && checkoutForm.get('postalCode')?.hasError('required')" class="text-danger">
+                            Postal Code is required
+                          </div>
+                          <div *ngIf="checkoutForm.get('postalCode')?.touched && checkoutForm.get('postalCode')?.hasError('invalidPostalCode')" class="text-danger">
+                            Sorry we are not delevering in this location.
+                          </div>
+                        </div>
+                    
+                        <div class="input-container">
+                          <label for="phoneNumber">Phone Number</label>
+                          <input type="tel" id="phoneNumber" formControlName="phoneNumber" />
+                          <div *ngIf="checkoutForm.get('phoneNumber')?.touched && checkoutForm.get('phoneNumber')?.invalid" class="text-danger">
+                            Enter a valid 10-digit phone number
+                          </div>
+                        </div>
+                    
+                        <div class="input-container">
+                          <label for="emailAddress">Email Address</label>
+                          <input type="email" id="emailAddress" formControlName="emailAddress" />
+                          <div *ngIf="checkoutForm.get('emailAddress')?.touched && checkoutForm.get('emailAddress')?.invalid" class="text-danger">
+                            Enter a valid email address
+                          </div>
+                        </div>
+                    </form>
+                  </div>
+                  <div class="col-md-1"></div>
+                  <div class="col-md-6">
+                      @if(checkoutForm.get('postalCode')?.invalid)
+                      {
+                        <div>
+                          Please enter postal code to view order summary
+                        </div>
+                      }
+                      @else
+                      {
+                        <div class="order-summary">
+                          @for(item of mappedCartItems; track item)
+                          {
+                            <div class="item">
+                              <div class="d-flex align-items-center">
+                                  <img src="{{item.imageUrl}}" alt="LCD Monitor">
+                                  <div class="details">{{item.name}}({{item.quantity}})</div>
+                              </div>
+                              <div>X ${{getDiscountedPrice(item.productId, item.variantId, item.price)}} <span class="discount" *ngIf="item.price != getDiscountedPrice(item.productId, item.variantId, item.price)">${{item.price}}</span></div>
+                            </div>
+                          }
+                            <div class="total">
+                                <div class="item">
+                                    <div>Subtotal:</div>
+                                    <div>${{getSubTotalAfterDiscount()}} <span class="discount" *ngIf="totalCartAmount != getSubTotalAfterDiscount()">${{totalCartAmount}}</span> </div>
+                                </div>
+                                <div class="item">
+                                    <div>Shipping:</div>
+                                    <div>${{orderAmount.shippingFee}}</div>
+                                </div>
+                                <div class="item">
+                                  <div>Tax:</div>
+                                  <div>${{orderAmount.tax}}</div>
+                              </div>
+                                <div class="item">
+                                    <div>Total:</div>
+                                    <div>${{orderAmount.totalPrice}}</div>
+                                </div>
+                            </div>
+                        </div>
+                      }
+                      
+                      <div class="payment-options">
+                          <div class="form-check">
+                              <input class="form-check-input" type="radio" name="payment" id="cashOnDelivery" checked>
+                              <label class="form-check-label" for="cashOnDelivery">
+                                  Cash on delivery
+                              </label>
+                          </div>
+                      </div>
+                      <div class="coupon-section d-flex flex-wrap">
+                          <input type="text" placeholder="Coupon Code" #couponCode (input)="handleCouponClear(couponCode.value)">
+                          <app-button [label]="'Apply Coupon'" style="min-width: 200px; flex: 1;" (click)="applyCoupon(couponCode.value)"></app-button>
+                      </div>
+                      <div>
+                        @if(isCouponCodeApplied)
+                          {
+                            <span style="color: green; font-size: 12px;">Coupon applied successfully</span>
+                          }
+                          @if(isInvalidCoupon && couponCode.value.length > 0)
+                          {
+                            <span style="color: red; font-size: 12px;">Invalid coupon</span>
+                          }
+                      </div>
+                      <div class="place-order mt-4">
+                          <app-button [label]="'Place Order'" [disabled]="isSubmitted || checkoutForm.invalid" (click)="triggerSubmit()"></app-button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </main>
+    }
+   
+  }
+    
+</div>

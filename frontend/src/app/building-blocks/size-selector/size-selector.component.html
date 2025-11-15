@@ -1,0 +1,9 @@
+<div style="display: flex; align-items: center;">
+    <span style="font-weight: bold; margin-right: 8px;">{{label}}:</span>
+    <div style="display: flex; align-items: center;">
+        @for(size of availableSizes; track size)
+        {
+             <button class="size-sel-btn" (click)="selectSize(size)" [style.backgroundColor]="selectedSize === size ? '#e3342f' : 'white'" [style.color]="selectedSize === size ? 'white' : 'black'">{{ size }}</button>
+        }
+    </div>
+  </div>

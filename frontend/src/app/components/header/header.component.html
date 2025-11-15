@@ -1,0 +1,67 @@
+
+<div class="main-header">
+    <div class="header container">
+      <div class="first d-flex justify-content-start align-items-center">
+        <span class="app-name">{{storeInfo.name}}</span>
+      </div>
+      <div class="second d-flex justify-content-center align-items-center">
+        <a routerLink="" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }" class="main-link">Home</a>
+        <a routerLink="contact" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }" class="main-link">Contact</a>
+        <a routerLink="about"  routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }" class="main-link">About</a>
+        @if(canShowWithoutSignup())
+        {
+          <a routerLink="register" routerLinkActive="active-link"  [routerLinkActiveOptions]="{ exact: true }" class="main-link">Sign Up</a>
+        }
+      </div>
+      <div class="third d-flex justify-content-end align-items-center">
+        <div class="search-input">
+          <input type="text" #searchText placeholder="What are you looking for?" [value]="searchKey" (keydown.enter)="onSearch(searchText.value)">
+          <button>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20 20L16.2223 16.2156M18.3158 11.1579C18.3158 13.0563 17.5617 14.8769 16.2193 16.2193C14.8769 17.5617 13.0563 18.3158 11.1579 18.3158C9.2595 18.3158 7.43886 17.5617 6.0965 16.2193C4.75413 14.8769 4 13.0563 4 11.1579C4 9.2595 4.75413 7.43886 6.0965 6.0965C7.43886 4.75413 9.2595 4 11.1579 4C13.0563 4 14.8769 4.75413 16.2193 6.0965C17.5617 7.43886 18.3158 9.2595 18.3158 11.1579V11.1579Z" stroke="black" stroke-width="1.5" stroke-linecap="round" />
+            </svg>
+          </button>
+        </div>
+        @if(!canShowWithoutSignup())
+        {
+          <div class="icon-section d-flex">
+            <div class="liked icons ml-4" routerLink="watchlist">
+               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M21.257 10.962C21.731 11.582 21.731 12.419 21.257 13.038C19.764 14.987 16.182 19 12 19C7.81801 19 4.23601 14.987 2.74301 13.038C2.51239 12.7411 2.38721 12.3759 2.38721 12C2.38721 11.6241 2.51239 11.2589 2.74301 10.962C4.23601 9.013 7.81801 5 12 5C16.182 5 19.764 9.013 21.257 10.962V10.962Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+               </svg>
+            </div>
+            <div class="cart icons ml-4">
+              <a routerLink="/cart" style="position: relative;">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M11 27C11.5523 27 12 26.5523 12 26C12 25.4477 11.5523 25 11 25C10.4477 25 10 25.4477 10 26C10 26.5523 10.4477 27 11 27Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M25 27C25.5523 27 26 26.5523 26 26C26 25.4477 25.5523 25 25 25C24.4477 25 24 25.4477 24 26C24 26.5523 24.4477 27 25 27Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M3 5H7L10 22H26" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M10 16.6667H25.59C25.7056 16.6667 25.8177 16.6267 25.9072 16.5535C25.9966 16.4802 26.0579 16.3782 26.0806 16.2648L27.8806 7.26479C27.8951 7.19222 27.8934 7.11733 27.8755 7.04552C27.8575 6.97371 27.8239 6.90678 27.7769 6.84956C27.73 6.79234 27.6709 6.74625 27.604 6.71462C27.5371 6.68299 27.464 6.66661 27.39 6.66666H8" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  @if((cartInfo?.items?.length)??0 > 0)
+                  {
+                    <span class="icon-indicator">{{cartInfo?.items?.length}}</span>
+                  } 
+              </a>
+            </div>
+            <div class="profile icons ml-4">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="32" height="32" rx="16" fill="#DB4444"/>
+                <path d="M21 23V21.3333C21 20.4493 20.691 19.6014 20.1408 18.9763C19.5907 18.3512 18.8446 18 18.0667 18H12.9333C12.1554 18 11.4093 18.3512 10.8592 18.9763C10.309 19.6014 10 20.4493 10 21.3333V23" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M16 15C17.6569 15 19 13.6569 19 12C19 10.3431 17.6569 9 16 9C14.3431 9 13 10.3431 13 12C13 13.6569 14.3431 15 16 15Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+    
+                <ul class="menu-items">
+                  <li><a routerLink="/profile" class="link">Manage My Account</a></li>
+                  <li routerLink="/my-reviews">My Reviews</li>
+                  <li routerLink="/my-orders">My Order</li>
+                  <li (click)="logout()">Logout</li>
+                </ul>
+            </div>
+          </div>
+        }
+       
+      </div>
+    </div>
+  </div>

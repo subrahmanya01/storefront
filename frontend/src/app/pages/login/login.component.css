@@ -1,0 +1,64 @@
+
+  .login-container
+  {
+    min-height: 70vh;
+    margin: 40px 0px;
+  }
+
+  .login-image
+  {
+    width: 70%;
+  }
+
+  .head-sec h4
+  {
+    font-weight: 600;
+  }
+  .custom-margin
+  {
+    margin-top: 10px !important;
+  }
+  .inp-sec
+  {
+    min-width: 350px;
+  }
+
+  .already-have-account
+  {
+    margin-top: 20px;
+  }
+
+  .link
+  {
+    color: var(--label);
+  }
+
+  .forgot-password-section > a
+  {
+    color: var(--button-2);
+    text-decoration: none;
+  }
+
+  .invalid-cred
+  {
+    padding: 5px;
+    width: 100%;
+    color: red;
+    text-align: center;
+    border-radius: 8px;
+  }
+
+  @media (max-width: 768px) {
+    .login-image
+    {
+        display: none;
+    }
+    .right-part
+    {
+        width: 100%;
+    }
+    .inp-sec
+    {
+        width: 100%;
+    }
+  }

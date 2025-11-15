@@ -1,0 +1,13 @@
+<div class="b-c d-flex align-items-center">
+  <div class="breadcrumb">
+    <span routerLink="/">Home</span>
+
+    @if(breadcrumbs.length)
+    {
+      @for(item of breadcrumbs; track item)
+      {
+        <span [routerLink]="item.url">{{item.label}}</span>
+      }
+    }
+  </div>
+</div>

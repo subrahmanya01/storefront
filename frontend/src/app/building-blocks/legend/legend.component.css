@@ -1,0 +1,19 @@
+.legend > .color-block
+{
+    background-color: var(--button-2);
+    height: 35px;
+    width: 20px;
+    border-radius: 6px;
+}
+.legend > .text-block
+{
+    color: var(--button-2);
+    padding-left: 16px;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.legend-parent
+{
+    display: inline-block;
+}

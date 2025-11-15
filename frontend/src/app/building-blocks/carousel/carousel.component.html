@@ -1,0 +1,19 @@
+<div class="carousel-main">
+  <div class="image-container d-flex" #scrollContainer>
+    @for(item of carouselItems;track item) {
+      <div class="image-view d-flex align-items-center justify-content-center">
+        <img src="{{item.imageUrl}}" alt="test">
+      </div>
+    }
+
+
+  </div>
+
+  <!-- <div class="dots">
+    <div class="d-flex justify-content-center" style="gap: 10px;">
+      @for(item of carouselItems;track item) {
+        <div class="dot"></div>
+      }
+    </div>
+  </div> -->
+</div>

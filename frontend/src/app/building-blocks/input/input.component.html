@@ -1,0 +1,5 @@
+<div class="input-container">
+    <input type="{{type}}" id="name" name="name" class="input-field" placeholder=" " [value]="value"
+        (input)="onInputChange($event.target)" (blur)="onTouched()">
+    <label for="name" class="placeholder-label">{{placeholder}}</label>
+</div>

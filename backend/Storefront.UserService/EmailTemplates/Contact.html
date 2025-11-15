@@ -1,0 +1,201 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>New Contact Form Submission</title>
+    <style type="text/css">
+        /* Basic CSS Reset */
+        body {
+            margin: 0;
+            padding: 0;
+            min-width: 100% !important;
+        }
+
+        img {
+            height: auto;
+            line-height: 100%;
+            outline: none;
+            text-decoration: none;
+            display: block;
+        }
+
+        table {
+            border-collapse: collapse;
+            mso-table-lspace: 0pt;
+            mso-table-rspace: 0pt;
+        }
+
+        td {
+            padding: 0;
+        }
+
+        /* Client-specific Styles */
+        .ExternalClass {
+            width: 100%;
+        }
+            /* Force Hotmail/Outlook to display emails at full width */
+            .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div {
+                line-height: 100%;
+            }
+        /* Force Hotmail/Outlook to display content at normal scale */
+        .ReadMsgBody {
+            width: 100%;
+            background-color: #f6f6f6;
+        }
+
+        .aolmailtext {
+            color: #333333;
+        }
+        /* Improve readability of AOL mail */
+
+        /* Mobile Styles (Optional - adjust breakpoints as needed) */
+        @media only screen and (max-width: 600px) {
+            .full-width-image img {
+                max-width: 100% !important;
+            }
+
+            .block-grid {
+                width: 100% !important;
+            }
+
+            .col {
+                width: 100% !important;
+            }
+
+                .col > table {
+                    width: 100% !important;
+                }
+
+            .no-stack .col {
+                display: table-cell !important;
+            }
+        }
+
+        /* Inline Styles (Recommended to copy and paste these directly into the HTML) */
+        .container {
+            background-color: #f6f6f6;
+            padding: 20px 0 40px 0; /* Adjust padding as needed */
+        }
+
+        .email-body {
+            background-color: #ffffff;
+            border: 1px solid #dddddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            padding: 20px 30px 20px 30px;
+            background-color: #DB4444; /* Store primary color */
+            color: #ffffff;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            text-align: center;
+        }
+
+            .header h1 {
+                margin: 0;
+                font-size: 24px;
+                font-weight: bold;
+            }
+
+        .content {
+            padding: 30px 30px 30px 30px;
+            color: #555555;
+            font-family: Arial, sans-serif;
+            font-size: 15px;
+            line-height: 20px;
+        }
+
+            .content h2 {
+                color: #333333;
+                margin-top: 0;
+                font-size: 20px;
+                font-weight: bold;
+                margin-bottom: 20px;
+            }
+
+        .detail-row {
+            margin-bottom: 15px;
+        }
+
+        .detail-label {
+            font-weight: bold;
+            color: #333333;
+        }
+
+        .message-section {
+            margin-top: 25px;
+            border-top: 1px solid #eeeeee;
+            padding-top: 20px;
+        }
+
+        .message-content {
+            background-color: #f9f9f9;
+            border: 1px solid #eeeeee;
+            border-radius: 4px;
+            padding: 15px;
+            white-space: pre-wrap; /* Preserve line breaks from textarea */
+            word-break: break-word; /* Prevent long words from overflowing */
+        }
+
+        .footer {
+            padding: 20px 30px 20px 30px;
+            text-align: center;
+            font-size: 12px;
+            color: #999999;
+        }
+
+            .footer a {
+                color: #999999;
+                text-decoration: none;
+            }
+    </style>
+</head>
+<body class="container">
+    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td>
+                <table class="email-body" align="center" width="600" cellpadding="0" cellspacing="0" border="0" style="width: 600px; max-width: 600px;">
+                    <tr>
+                        <td class="header">
+                            <h1>[User's Name] trieng to contact you</h1>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="content">
+                            <h2>Contact Details</h2>
+
+                            <div class="detail-row">
+                                <span class="detail-label">Name:</span> [User's Name]
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Email:</span> <a href="mailto:[User's Email]" style="color: #007bff; text-decoration: none;">[User's Email]</a>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Phone:</span> [User's Phone]
+                            </div>
+
+                            <div class="message-section">
+                                <span class="detail-label">Message:</span>
+                                <div class="message-content">
+                                    [User's Message]
+                                </div>
+                            </div>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="footer">
+                            &copy; [Current Year] [Your Store Name]. All rights reserved.<br />
+                            [Your Store Address]<br />
+                            <a href="[Link to your website]" style="color: #999999;">[Your Website]</a>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

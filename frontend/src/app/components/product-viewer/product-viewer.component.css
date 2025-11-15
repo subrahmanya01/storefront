@@ -1,0 +1,90 @@
+.div-container {
+    display: flex;
+    width: 100%;
+    height: auto;
+  }
+
+  .left-panel {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    min-width: 100px;
+    max-width: 200px;
+    margin-right: 15px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    padding-right: 5px;
+  }
+
+  .left-panel::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  .left-panel img {
+    width: 100%;
+    height: 120px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    background-color: var(--card-background);
+    padding: 8px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    object-fit: contain; 
+  }
+
+  .left-panel img:hover {
+    transform: scale(1.05);
+  }
+
+  .right-panel {
+    background-color: var(--card-background);
+    border-radius: 8px;
+    padding: 15px;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .right-panel img {
+    width: 400px;
+    height: 400px;
+    transition: opacity 0.5s ease, transform 0.3s ease;
+    opacity: 0;
+    transform: scale(0.9);
+    object-fit: contain; 
+  }
+
+  .right-panel img.loaded {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  @media (max-width: 600px) {
+    .div-container {
+      flex-direction: column;
+    }
+
+    .left-panel {
+      width: 100%;
+      max-width: none;
+      margin-right: 0;
+      flex-direction: row;
+      overflow-x: auto;
+      overflow-y: hidden;
+      white-space: nowrap;
+    }
+
+    .left-panel img {
+      margin-right: 10px;
+      margin-bottom: 0;
+      height: 100px;
+    }
+
+    .right-panel img {
+      width: 300px;
+      height: 300px;
+    }
+  }

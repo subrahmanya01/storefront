@@ -1,0 +1,58 @@
+<div class="container">
+    <h2>Tax Rate Management</h2>
+  
+    <form [formGroup]="taxRateForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="country">Country *</label>
+        <input id="country" type="text" formControlName="country" class="form-control" placeholder="Enter Country">
+        <div *ngIf="taxRateForm.get('country')?.invalid && (taxRateForm.get('country')?.dirty || taxRateForm.get('country')?.touched)" class="error-message">
+          Country is required.
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="state">State</label>
+        <input id="state" type="text" formControlName="state" class="form-control" placeholder="Enter State (Optional)">
+      </div>
+  
+      <div class="form-group">
+        <label for="rate">Rate *</label>
+        <input id="rate" type="number" formControlName="rate" class="form-control" placeholder="Enter Rate">
+         <div *ngIf="taxRateForm.get('rate')?.invalid && (taxRateForm.get('rate')?.dirty || taxRateForm.get('rate')?.touched)" class="error-message">
+          Rate is required and must be a non-negative number.
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="category">Category</label>
+        <input id="category" type="text" formControlName="category" class="form-control" placeholder="Enter Category (Optional)">
+      </div>
+  
+      <div class="button-group">
+        <button type="submit" class="btn btn-primary" [disabled]="taxRateForm.invalid || isLoading">
+          {{ selectedTaxRate ? 'Update Tax Rate' : 'Create Tax Rate' }}
+        </button>
+        <button type="button" class="btn btn-secondary" (click)="resetForm()">Cancel/New</button>
+      </div>
+    </form>
+  
+    <div *ngIf="isLoading" class="loading-message">Loading...</div>
+    <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+    <div *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</div>
+  
+  
+    <div class="tax-rate-list">
+      <h3>Existing Tax Rates</h3>
+      <div *ngIf="taxRates.length === 0 && !isLoading">No tax rates found.</div>
+      <ul>
+        <li *ngFor="let rate of taxRates">
+          <span>{{ rate.country }} {{ rate.state ? '(' + rate.state + ')' : '' }} - {{ rate.rate | number:'1.2-2' }}% {{ rate.category ? '[' + rate.category + ']' : '' }}</span>
+          <div class="list-actions">
+            <button class="btn btn-edit" (click)="selectTaxRateForEdit(rate)">Edit</button>
+            <button class="btn btn-delete" (click)="deleteTaxRate(rate.id)">Delete</button>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  

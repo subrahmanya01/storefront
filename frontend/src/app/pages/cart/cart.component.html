@@ -1,0 +1,51 @@
+
+@if(isLoading)
+{
+    <div class="spinner-div">
+        <app-spinner></app-spinner>
+    </div>
+}
+@else
+{
+    @if(isNoCartItems)
+    {
+        <div class="no-items">
+            <h4>No Cart Items Exists</h4>
+        </div>
+    }
+    @else
+    {
+        <div class="container cart mb-4">
+            <app-bread-scrum></app-bread-scrum>
+            <div class="main-cart d-flex">
+                <div class="cart-list w-75">
+                    <app-cart-list [cartItems]="mappedCartItems"
+                    (onDelete)="onDeleteEvent($event)"
+                    (onUpdate)="onCartUpdate($event)"
+                    (onQuantityUpdate)="onQuantityUpdateEvent($event)"
+                    ></app-cart-list>
+                </div>
+                <div class="cart-total w-25">
+                    <h6>Cart Total</h6>
+                     
+                     <div class="price-entry d-flex w-100">
+                        <div class="left">SubTotal</div>
+                        <div class="right d-flex justify-content-end;">${{totalCartAmount}}</div>
+                     </div>
+                     <div class="price-entry d-flex w-100">
+                        <div class="left">Delevery</div>
+                        <div class="right d-flex justify-content-end;">To be calculated</div>
+                     </div>
+                     <div class="price-entry d-flex w-100">
+                        <div class="left total">Total</div>
+                        <div class="right d-flex justify-content-end; total">${{totalCartAmount}}</div>
+                     </div>
+                     <div class="checkout mt-4">
+                        <app-button [label]="'Proceed Checkout'" (click)="onCheckout()"></app-button>
+                     </div>
+                </div>
+            </div>
+        </div>
+    }
+   
+}

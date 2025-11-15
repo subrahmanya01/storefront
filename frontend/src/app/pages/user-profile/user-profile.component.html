@@ -1,0 +1,123 @@
+
+    <div class="container">
+        <app-bread-scrum></app-bread-scrum>
+        <div class="profile d-flex">
+            <aside class="sidebar">
+                <div class="sidebar-header">Manage My Account</div>
+                <ul class="sidebar-menu">
+                    <li class="active"><a href="#">My Profile</a></li>
+                    <li><a>Address Book <span class="coming-soon">Coming Soon</span></a></li>
+                    <li><a>My Payment <span class="coming-soon">Coming Soon</span></a></li>
+                </ul>
+                <div class="sidebar-header">My Orders</div>
+                <ul class="sidebar-menu">
+                    <li><a href="#">My Returns</a></li>
+                    <li><a href="#">My Cancellations</a></li>
+                </ul>
+                <div class="sidebar-header">My Wishlist</div>
+            </aside>
+            <main class="content">
+                <h2 class="content-header">Edit Your Profile</h2>
+                <form class="profile-form" [formGroup]="userForm" (submit)="onSubmit()">
+                    <div class="form-row">
+                        <div class="input-container">
+                            <label for="firstName">First Name</label>
+                            <input type="text" id="firstName" formControlName="firstName"> 
+                            @if(userForm.get('firstName')?.touched && userForm.get('firstName')?.invalid)
+                            {
+                                <span class="error">First Name is required.</span>
+                            }
+                        </div>
+
+                        <div class="input-container">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" id="lastName" formControlName="lastName"> 
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="input-container">
+                            <label for="email">Email</label>
+                            <input type="email" id="email"  formControlName="email" readonly> 
+                            @if(userForm.get('email')?.touched && userForm.get('email')?.invalid)
+                            {
+                                @if(userForm.get('email')?.errors?.['required'])
+                                {
+                                    <span class="error">Email is required.</span>
+                                }
+                                @else if(userForm.get('email')?.errors?.['email'])
+                                {
+                                    <span class="error">Invalid Email.</span>
+                                }
+                            }
+                        </div>
+
+                        <div class="input-container">
+                            <label for="phone">Phone Number</label>
+                            <input type="text" id="phone"  formControlName="phoneNumber"> 
+                            @if(userForm.get('phoneNumber')?.touched && userForm.get('phoneNumber')?.invalid)
+                            {
+                                @if(userForm.get('phoneNumber')?.errors?.['pattern'])
+                                {
+                                    <span class="error">Invalid phone number format.</span>
+                                }
+                                @else if(userForm.get('phoneNumber')?.errors?.['minlength'])
+                                {
+                                    <span class="error">Phone number is too short.</span>
+                                }
+                            }
+                        </div>
+                    </div>
+                    <div class="password-section">
+                        <h3 class="pass-change">Password Changes</h3>
+                        <div class="form-row d-flex">
+                            <div class="input-container">
+                                <label for="currentPassword">Current Password</label>
+                                <input type="password" id="currentPassword" formControlName="currentPassword"> 
+                                @if(userForm.get('currentPassword')?.touched  && userForm.get('currentPassword')?.errors?.['required'])
+                                {
+                                    <span class="error">New Password is required.</span>
+                                }
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="input-container">
+                                <label for="newPassword">New Password</label>
+                                <input type="password" id="newPassword" formControlName="newPassword">
+                                @if(userForm.get('newPassword')?.invalid)
+                                {
+                                    @if(userForm.get('newPassword')?.errors?.['required'])
+                                    {
+                                        <span class="error">New Password is required.</span>
+                                    }
+                                    @else if(userForm.get('newPassword')?.errors?.['minlength'])
+                                    {
+                                        <span class="error">Minimum 8 characters required.</span>
+                                    }
+                                } 
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="input-container">
+                                <label for="confirmPassword">Confirm New Password</label>
+                                <input type="password" id="confirmPassword" formControlName="confirmPassword"> 
+                                @if(userForm.get('confirmPassword')?.invalid)
+                                {
+                                    @if(userForm.get('confirmPassword')?.errors?.['required'])
+                                    {
+                                        <span class="error">Confirm Password is required.</span>
+                                    }
+                                } 
+                                @if(userForm.get('confirmPassword')?.errors?.['mustMatch'])
+                                {
+                                    <span class="error">Passwords must match.</span>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <app-button [label]="'Save Changes'" buttonType="submit" [disabled]="!userForm.valid"  style="min-width: 150px; margin-right: 20px;"></app-button>
+                    </div>
+                </form>
+            </main>
+        </div>
+    </div>

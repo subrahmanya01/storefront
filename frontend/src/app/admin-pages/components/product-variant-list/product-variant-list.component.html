@@ -1,0 +1,75 @@
+<div class="variant-list">
+    <h3>Product Variants</h3>
+  
+    <div class="button-div" style="max-width: 200px;">
+      <app-button  buttonType="button" size="small" label="Add New Variant" (click)="startAddingVariant()"></app-button>
+    </div>
+    <div *ngIf="variants.length === 0; else variantTable">
+      <p>No variants added yet.</p>
+    </div>
+  
+    <ng-template #variantTable>
+      <table>
+        <thead>
+          <tr>
+            <th>Attributes</th>
+            <th>Price</th>
+            <th>Inventory</th>
+            <th>Images</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let variant of variants">
+            <td>
+              <span *ngFor="let attribute of allowedAttributes; let last = last">
+                <b>{{ attribute }}:</b> {{ variant.attributes ? (variant.attributes[attribute] || '-') : '-' }}{{ !last ? ', ' : '' }}
+              </span>
+               <span *ngIf="!allowedAttributes || allowedAttributes.length === 0">
+                   {{ getAttributeSummary(variant) }}
+               </span>
+            </td>
+            <td>{{ variant.price | currency }}</td>
+            <td>{{ variant.inventory }}</td>
+            <td>
+              <span *ngIf="variant.images && variant.images.length > 0">
+                {{ variant.images.length }} image(s)
+              </span>
+              <span *ngIf="!variant.images || variant.images.length === 0">
+                No images
+              </span>
+            </td>
+            <td>
+              <button (click)="startEditingVariant(variant)">Edit</button>
+              <button (click)="deleteVariant(variant.id!)">Delete</button>
+              <button (click)="startManagingImages(variant)">Manage Images</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </ng-template>
+  
+    <div *ngIf="showVariantForm" class="variant-form-modal">
+       <div class="modal-content">
+          <app-product-variant-form
+             [productId]="productId"
+             [variant]="editingVariant"
+             [allowedAttributes]="allowedAttributes"
+             (variantSaved)="onVariantSaved($event)"
+             (cancel)="cancelVariantForm()"
+          ></app-product-variant-form>
+       </div>
+    </div>
+  
+    <div *ngIf="showImageManager && selectedVariantForImages" class="image-manager-modal">
+        <div class="modal-content">
+           <app-variant-image-manager
+              [productId]="productId"
+              [variant]="selectedVariantForImages"
+              (imagesUpdated)="onVariantImagesUpdated($event)"
+              (cancel)="cancelImageManager()"
+           ></app-variant-image-manager>
+        </div>
+     </div>
+  
+  </div>

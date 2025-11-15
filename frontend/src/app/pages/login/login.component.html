@@ -1,0 +1,47 @@
+<div class="login-container right-part d-flex align-items-center justify-content-center flex-column">
+    <div class="container d-flex">
+        <div class="left-part">
+            <img src="login.png" alt="login" class="login-image">
+        </div>
+        <div class="right-part d-flex flex-column align-items-center justify-content-center">
+            <div class="head-sec">
+                <h4>Log In to Exclusive</h4>
+                <p>Enter your details below</p>
+            </div>
+            <form  [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                @if(isInvalidCredentials)
+                {
+                    <div class="invalid-cred">Invalid Credentials</div>
+                }
+                <div class="inp-sec">
+                    <app-input [placeholder]="'Email or Phone Number'" formControlName="emailOrPhone"></app-input>
+                </div>
+                @if((isSubmitted || loginForm.get('emailOrPhone')?.touched) && (loginForm.get('emailOrPhone')?.errors?.['required']))
+                {
+                    <small class="error">Email or Phone Number is required.</small>
+                }
+                @else if((isSubmitted || loginForm.get('emailOrPhone')?.touched) && loginForm.get('emailOrPhone')?.errors?.['pattern'])
+                {
+                    <small class="error">Invalid Email or Phone Number.</small>
+                }
+                <div class="inp-sec">
+                    <app-input [placeholder]="'Password'" [type]="'password'"  formControlName="password"></app-input>
+                </div>
+                @if((isSubmitted || loginForm.get('password')?.touched) && (loginForm.get('password')?.errors?.['required']))
+                {
+                    <small class="error">Password is required.</small>
+                }
+                <div class="mt-4" style="width: 100%;">
+                    <app-button [label]="'Login'" class="custom-margin" [disabled]="isLoginCliked"></app-button>
+                </div>
+            </form>
+            
+            <div class="forgot-password-section mt-2">
+                <a routerLink="/forgot-password">Forgot Password?</a>
+            </div>
+            <div class="already-have-account">
+                <p>Dont have account? <a routerLink="/register" class="link">Create Account</a></p> 
+            </div>
+        </div>
+    </div>
+</div>

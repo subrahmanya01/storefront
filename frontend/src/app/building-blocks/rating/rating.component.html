@@ -1,0 +1,9 @@
+<div id="rating-component">
+    <div id="rating-display" style="display: flex; align-items: center;">
+        @for(star of [1, 2, 3, 4, 5];track star;let i=$index)
+        {
+        <span class="input-star"  (click)="setRating(star)" (mouseover)="hoverRating(star)" (mouseout)="resetHover()" [style.color]="getInputStarColor(star)" [style.cursor]="isReadOnly ? 'default' : 'pointer'" [class.selected]="i === selectedStarIndex">★</span>
+        }
+        <span class="rating-count" style="margin-left: 8px; color: #808080; font-weight: 500;">{{ text }}</span>
+    </div>
+</div>

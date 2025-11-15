@@ -1,0 +1,144 @@
+.header {
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    height: 60px;
+    align-items: center; 
+  }
+
+  .main-link {
+    text-decoration: none;
+    color: black;
+    margin: 5px 15px;
+  }
+
+  .app-name {
+    font-size: 22px;
+    font-weight: 800;
+  }
+
+  .main-header {
+    padding-top: 15px;
+    padding-bottom: 10px;
+    border-bottom: 0.5px solid var(--line);
+  }
+
+  .search-input {
+    background-color: var(--input-background);
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    overflow: hidden; 
+  }
+
+  .search-input input {
+    border: none;
+    padding: 8px 12px;
+    background-color: transparent;
+    flex-grow: 1; 
+  }
+
+  .search-input button {
+    background-color: transparent;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+  }
+
+  .icons
+  {
+    margin-left: 15px;
+    cursor: pointer;
+  }
+
+  .profile
+  {
+    position: relative;
+  }
+
+  
+  @media (max-width: 768px) {
+    .header {
+      grid-template-columns: auto; 
+      grid-template-rows: auto auto auto; 
+      height: auto; 
+    }
+
+    .first,
+    .second,
+    .third {
+      justify-content: center !important; 
+      padding: 10px 0; 
+      flex-wrap: wrap;
+    }
+
+    .icon-section
+    {
+      margin-top: 10px;
+    }
+
+    .second {
+      flex-wrap: wrap; 
+    }
+
+    .main-link {
+      margin: 5px; 
+    }
+
+    .search-input {
+      width: 90%; 
+      margin: 0 auto;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .app-name {
+      font-size: 18px; 
+    }
+  }
+
+  .profile:hover > .menu-items
+  {
+    display: block;
+  }
+
+  .menu-items
+  {
+    display: none;
+    position: absolute;
+    right:10px;
+    width: 150px;
+    background: rgb(41, 41, 41);
+    color: rgb(235, 232, 232) !important;
+    font-size: 12px;
+    list-style-type: none;
+    padding: 0px 10px;
+    border-radius: 6px;
+    z-index: 100;
+  }
+
+  .menu-items>li
+  {
+    margin: 20px 0px;
+  }
+  .menu-items>li:hover
+  {
+    font-weight: 600;
+  }
+
+  .icon-indicator
+  {
+    background-color: var(--button-2);
+    border-radius: 50%;
+    color: white;
+    text-decoration: none;
+    height: 20px;
+    width: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: -10px;
+    right: 0px;
+    font-size: 10px;
+  }

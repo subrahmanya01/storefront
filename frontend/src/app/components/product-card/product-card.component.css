@@ -1,0 +1,103 @@
+.product-card
+{
+    width: 270px;
+    height: 350px;
+    position: relative;
+}
+
+.product-image
+{
+    max-width: 200px;
+}
+
+.image-section
+{
+    background-color: var(--card-background);
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+.additional-section
+{
+    height: 40px;
+}
+
+.description-section > .product-name
+{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 250px;
+    font-weight: 500;
+}
+
+.description-section > .amount > .actual
+{
+    font-size: 18px;
+    font-weight: 500;
+    display: inline-block;
+    color: var(--button-2);
+}
+
+.description-section > .amount > .striked
+{
+    font-size: 18px;
+    font-weight: 500;
+    display: inline-block;
+    margin-left: 10px;
+    text-decoration: line-through;
+    color: var(--label);
+}
+
+.discount-info
+{
+    position: absolute;
+    top:10px;
+    left: 10px;
+    background-color: var(--button-2);
+    color: white;
+    width: 55px;
+    height: 26px;
+    border-radius: 6px;
+}
+
+.right-side-bar
+{
+    position: absolute;
+    right: 10px;
+}
+
+.back-drop
+{
+    background-color: white;
+    border-radius: 50%;
+    padding: 5px;
+    cursor: pointer;
+}
+.image-section:hover > .add-to-cart
+{
+    opacity: 1;
+}
+
+.product-image
+{
+    height: 175px;
+}
+.add-to-cart
+{
+    opacity: 0;
+    background-color: black;
+    height: 40px;
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    color: white;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.custom-class
+{
+    z-index: 1000;
+}

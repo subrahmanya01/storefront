@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+option csharp_namespace = "Storefront.OrderAndShippingService.Protos";
+
+service CartRpc {
+  rpc GetCartById (GetCartRpcRequest) returns (CartRpcResponse);
+}
+
+message GetCartRpcRequest {
+  string cartId = 1;
+}
+message CartRpcResponse {
+  string id = 1;
+  string createdAt = 2;
+  string modifiedAt = 3;
+  string userId = 4;
+  repeated CartItemRpcResponse items = 5;
+}
+
+message CartItemRpcResponse {
+  string id = 1;
+  string createdAt = 2;
+  string modifiedAt = 3;
+  string cartId = 4;
+  string productId = 6;
+  string variantId = 7;
+  int32 quantity = 8;
+  double price = 9;
+}

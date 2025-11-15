@@ -1,0 +1,44 @@
+<div class="container" style="min-height: 75vh;">
+    <div class="product-list-container mt-4">
+        <div class="main-div">
+          <h2>🛍️ Product List</h2>
+          <app-button  label="Add Product" (click)="addProduct()" size="small" ></app-button>
+        </div>
+      
+        <table class="product-table">
+          <thead>
+            <tr>
+              <th>Image</th>
+              <th>Product Name</th>
+              <th>Category</th>
+              <th>Price</th>
+              <th>Stock</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let product of products;">
+              <td>
+                <img
+                  [src]="getImageUrl(product.name)"
+                  alt="{{ product.name }} image"
+                  class="product-image"
+                  (error)="handleImageError($event)" loading="lazy" />
+              </td>
+              <td>{{ product.name }}</td>
+              <td>{{ product.category }}</td>
+              <td>{{ getProductPrice(product) | currency:'USD':'symbol':'1.2-2' }}</td>
+              <td>{{ getProductStock(product) }}</td>
+              <td>
+                <button class="btn btn-edit" (click)="editProduct(product)">Edit</button>
+                <button class="btn btn-delete" (click)="deleteProduct(product.id)">Delete</button>
+              </td>
+            </tr>
+            <tr *ngIf="products.length === 0">
+              <td colspan="7" class="no-products">No products found.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+</div>

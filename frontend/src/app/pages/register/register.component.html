@@ -1,0 +1,51 @@
+<div class="login-container right-part d-flex align-items-center justify-content-center flex-column">
+    <div class="container d-flex">
+        <div class="left-part">
+            <img src="login.png" alt="login" class="login-image">
+        </div>
+        <div class="right-part d-flex flex-column align-items-center justify-content-center">
+            <div class="head-sec">
+                <h4>Create an Account</h4>
+                <p>Enter your details below</p>
+            </div>
+
+            <form  [formGroup]="registerForm" (ngSubmit)="onSubmit()" >
+                <div class="inp-sec">
+                    <app-input [placeholder]="'Name'" formControlName="name"></app-input>
+                </div>
+                @if((isSubmitted || registerForm.get('name')?.touched) && ( registerForm.get('name')?.errors?.['required']))
+                {
+                    <small class="error">Name is required.</small>
+                }
+                <div class="inp-sec">
+                    <app-input [placeholder]="'Email or Phone Number'" formControlName="emailOrPhone"></app-input>
+                </div>
+                @if((isSubmitted || registerForm.get('emailOrPhone')?.touched) && (registerForm.get('emailOrPhone')?.errors?.['required']))
+                {
+                    <small class="error">Email or Phone Number is required.</small>
+                }
+                @else if((isSubmitted || registerForm.get('emailOrPhone')?.touched) && registerForm.get('emailOrPhone')?.errors?.['pattern'])
+                {
+                    <small class="error">Invalid Email or Phone Number.</small>
+                }
+                <div class="inp-sec">
+                    <app-input [placeholder]="'Password'" [type]="'password'" formControlName="password"></app-input>
+                </div>
+                @if((isSubmitted || registerForm.get('password')?.touched) && ( registerForm.get('password')?.errors?.['required']))
+                {
+                    <small class="error">Password is required.</small>
+                }
+                <div class="mt-4" style="width: 100%;">
+                    <app-button [label]="'Create Account'" [disabled]="isSubmitted" class="custom-margin" buttonType="submit"></app-button>
+                </div>
+            </form>
+            <div class="mt-2" style="width: 100%;">
+                <app-icon-button [label]="'Sign up with Google'" [icon]="'google-icon.png'"
+                    class="custom-margin"></app-icon-button>
+            </div>
+            <div class="already-have-account">
+                <p>Already have account? <a href="/login" class="link">Log In</a></p> 
+            </div>
+        </div>
+    </div>
+</div>

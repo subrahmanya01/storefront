@@ -1,0 +1,48 @@
+<h3 style="text-align: center;">Manage Banner Images</h3>
+
+<div class="image-uploader-container">
+    <div
+      class="drop-zone"
+      [class.dragging]="isDragging"
+      (dragover)="onDragOver($event)"
+      (dragleave)="onDragLeave($event)"
+      (drop)="onDrop($event)"
+      (click)="fileInput.click()"> <p>Drag & Drop images here or click to select files</p>
+      <input
+        type="file"
+        #fileInput
+        multiple
+        accept="image/*"
+        (change)="onFileSelected($event)"
+        style="display: none;"> </div>
+  
+    <div *ngIf="selectedFiles.length > 0" class="selected-files-preview">
+      <h4>Selected Files (Ready to Upload)</h4>
+      <div class="image-grid">
+        <div *ngFor="let file of selectedFiles; let i = index" class="image-item">
+          <img [src]="getFileUrl(file)" alt="{{ file.name }}">
+          <button class="remove-button" (click)="removeSelectedFile(i)">
+            &times; </button>
+          <div class="file-name">{{ file.name }}</div>
+        </div>
+      </div>
+      <button class="upload-button" (click)="uploadFiles()" [disabled]="selectedFiles.length === 0 || isUploading">
+        {{ isUploading ? 'Uploading...' : 'Upload Files (' + selectedFiles.length + ')' }}
+      </button>
+      <div *ngIf="uploadMessage" class="upload-message">{{ uploadMessage }}</div>
+    </div>
+  
+    <hr *ngIf="selectedFiles.length > 0 && existingImages.length > 0"> <div *ngIf="existingImages.length > 0 || isLoadingExisting" class="existing-images">
+      <h4>Existing Images</h4>
+      <div *ngIf="isLoadingExisting">Loading existing images...</div>
+      <div class="image-grid">
+        <div *ngFor="let image of existingImages; trackBy: trackById" class="image-item">
+          <img [src]="image.url" alt="Existing Image">
+          <button class="remove-button" (click)="removeExistingImage(image.id)" [disabled]="isDeleting[image.id]">
+            {{ isDeleting[image.id] ? '...' : '&times;' }} </button>
+          <div *ngIf="image.name" class="file-name">{{ image.name }}</div>
+        </div>
+      </div>
+    </div>
+  
+  </div>

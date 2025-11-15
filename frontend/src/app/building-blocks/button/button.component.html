@@ -1,0 +1,8 @@
+<button [type]="buttonType" 
+        (click)="clickPerformed()" 
+        class="primary-btn" 
+        [class]="size" 
+        [disabled]="disabled"
+        [ngClass]="{'outlined': type=='outlined'}">
+        {{label}}
+</button>

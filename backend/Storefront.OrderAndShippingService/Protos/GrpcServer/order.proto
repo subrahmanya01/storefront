@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+option csharp_namespace = "Storefront.OrderAndShippingService.Protos";
+import "google/protobuf/empty.proto";
+
+service OrderRpc {
+  rpc GetAllDiscounts (google.protobuf.Empty) returns (GetAllDiscountsResponse);
+  rpc GetAllShippingCharges (google.protobuf.Empty) returns (GetAllShippingChargesResponse);
+}
+
+message GetAllDiscountsResponse {
+  repeated DiscountRpcResponse discounts = 1;
+}
+
+message GetAllShippingChargesResponse {
+  repeated ShippingChargeRpcResponse shippingCharges = 1;
+}
+
+message DiscountRpcResponse {
+  string id = 1;
+  string createdAt = 2;
+  string modifiedAt = 3;
+  string code = 4;
+  double percentage = 5;
+  double minOrderAmount = 6;
+  string category = 7;
+  string productId = 8;
+  string validFrom = 9;
+  string validTo = 10;
+}
+
+message ShippingChargeRpcResponse {
+  string id = 1;
+  string createdAt = 2;
+  string modifiedAt = 3;
+  string country = 4;
+  string region = 5;
+  string productId = 6;
+  double minOrderAmount = 7;
+  double maxOrderAmount = 8;
+  double shippingFeePerKm = 9;
+  bool isFree = 10;
+  string carrier = 11;
+  string effectiveFrom = 12;
+  string effectiveTo = 13;
+}

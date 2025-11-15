@@ -1,0 +1,61 @@
+<div class="product-form">
+    <h5>{{ product?.id ? 'Edit Product Details' : 'Add New Product' }}</h5>
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+      <div class="custom-grid">
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input id="name" type="text" formControlName="name" required>
+          <div *ngIf="productForm.get('name')?.invalid && productForm.get('name')?.touched" class="error">
+            Name is required.
+          </div>
+        </div>
+    
+        <div class="form-group">
+          <label for="type">Type:</label>
+          <input id="type" type="text" formControlName="type" required>
+          <div *ngIf="productForm.get('type')?.invalid && productForm.get('type')?.touched" class="error">
+            Type is required.
+          </div>
+        </div>
+    
+      </div>
+      
+      <div class="form-group">
+        <label for="category">Category:</label>
+        <input id="category" type="text" formControlName="category" required>
+        <div *ngIf="productForm.get('category')?.invalid && productForm.get('category')?.touched" class="error">
+          Category is required.
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea id="description" formControlName="description"></textarea>
+        <div *ngIf="productForm.get('description')?.invalid && productForm.get('description')?.touched" class="error">
+          Description is required.
+        </div>
+      </div>
+      <h5>Attributes:</h5>
+      <div formArrayName="allowedAttributes">
+        <div *ngFor="let attributeControl of allowedAttributes.controls; let i = index" class="form-group custom-flex">
+          <div class="input-control">
+            <input type="text" [formControlName]="i" placeholder="Attribute Name">
+            <span style="color: red; font-size: 12px;" *ngIf=" (attributeControl.dirty || attributeControl.touched) && attributeControl.errors?.['required']">
+              Should not be empty
+            </span>
+          </div>
+          <app-button label="Remove" size="small" buttonType="button" (click)="removeAttribute(i)" style="width: 10%;"></app-button>
+        </div>
+      </div>
+      <app-button label="Add Attribute" type="outlined" size="small" buttonType="button" (click)="addAllowedAttribute()"></app-button>
+       <h5>Base Attributes:</h5>
+       <div formGroupName="baseAttributes">
+         <div class="form-group">
+           <label for="brand">Brand:</label>
+           <input id="brand" type="text" formControlName="Brand">
+         </div>
+         </div>
+  
+      <app-button label="Save Product" [disabled]="!productForm.valid" buttonType="submit" size="small"> </app-button>
+    </form>
+  </div>

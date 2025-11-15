@@ -1,0 +1,21 @@
+<a class="search-result-item" [routerLink]="['/product', product.id]">
+    <div class="item-image">
+      <img
+        [src]="getFirstImageUrl() || 'assets/placeholder.png'"
+        [alt]="product.name + ' Image'"
+      >
+    </div>
+  
+    <div class="item-content">
+      <h4>{{ product.name }}</h4>
+  
+      <p>{{ product.description | slice:0:100 }}{{ product.description.length > 100 ? '...' : '' }}</p>
+  
+      <div class="item-price">
+        {{ getFirstVariantPrice() | currency }}
+      </div>
+    </div>
+  
+    <div class="item-action">
+        <span class="view-details-link">Details</span> </div>
+  </a>

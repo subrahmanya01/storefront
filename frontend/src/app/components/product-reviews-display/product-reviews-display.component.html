@@ -1,0 +1,33 @@
+<div class="product-reviews-display-container container">
+    <app-legend [label]="'Reviews'"></app-legend>
+    <h4>Customer Reviews</h4>
+  
+    <div *ngIf="loadingReviews">
+      <p>Loading reviews...</p>
+    </div>
+  
+    <div *ngIf="errorMessage" class="error-message">
+      <p>{{ errorMessage }}</p>
+    </div>
+  
+    <div *ngIf="productReviews.length > 0; else noReviews">
+      <div *ngFor="let review of productReviews; let i=index" class="review-item">
+        <div class="rating-item">
+            <div class="left">
+            {{i+1}}
+            </div>
+            <div class="right">
+                <div class="rating">
+                    <app-rating [rating]="review.stars" [isReadOnly]="true"></app-rating>
+                  </div>
+                  <p class="comment" *ngIf="review.comment">{{ review.comment }}</p>
+                  <p class="reviewer-info">Reviewed on {{ review.timestamp | date:'mediumDate' }}</p>
+            </div>
+        </div>
+      </div>
+    </div>
+  
+    <ng-template #noReviews>
+      <p style="text-align: center;">No reviews yet for this product.</p>
+    </ng-template>
+  </div>
