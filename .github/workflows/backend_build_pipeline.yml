@@ -1,4 +1,4 @@
-name: .NET
+name: build_backend
 
 on:
   push:
